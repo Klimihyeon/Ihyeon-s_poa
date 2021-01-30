@@ -1,93 +1,31 @@
-# Ihyeon-s_poa
+# Ihyeon's Poa
+project java RPG 
 
-package practice;
+1. 프로젝트 내용(이미지/로고)
+    java based rpg
 
-import java.util.Arrays;
-import java.util.Scanner;
+2. 설치방법
+none
 
-public class Baseball {
+3. 코드 예제
+none
 
-	public static void main(String[] args) {
-		
-		Scanner sc = new Scanner(System.in);
-		
-		
-		int a = (int)(Math.random()*9+1);
-		int b = (int)(Math.random()*9+1);
-		int c = (int)(Math.random()*9+1);
-		
-		System.out.println("첫번째 랜덤수 "+ a +"두번째 랜덤수"+ b +"세번째 랜덤수"+ c);
-	
-		int strike =0;
-		int ball = 0;
-		int out = 0;
-		
-	for(int i = 0; i < 100; i++) {
-		strike =0;
 
-		System.out.println("첫번째 숫자를 입력해주세요.");
-		int num1 = Integer.parseInt(sc.nextLine());
-		System.out.println("두번째 숫자를 입력해주세요.");
-		int num2 = Integer.parseInt(sc.nextLine());
-		System.out.println("세번째 숫자를 입력해주세요.");
-		int num3 = Integer.parseInt(sc.nextLine());
-		if(num1 == a ) {
-			strike++;		
-			System.out.println("Strike!");
-		}
-		if(num1 == b ) {
-			System.out.println("ball!");
-			ball++;
-		}
-		if(num1 == c ) {
-			System.out.println("ball!");
-			ball++;
-		}
-		if(num2 == a ) {
-			ball++;		
-			System.out.println("ball!");
-		}
-		if(num2 == b ) {
-			System.out.println("Strike!");
-			strike++;
-		}
-		if(num2 == c ) {
-			System.out.println("ball!");
-			ball++;
-		}
-		if(num3 == a ) {
-			ball++;		
-			System.out.println("ball!");
-		}
-		if(num3 == b ) {
-			System.out.println("ball!");
-			ball++;
-		}
-		if(num3 == c ) {
-			System.out.println("Strike!");
-			strike++;
-		}
-		else {out++;
-			System.out.println("틀렸군요");}
-		boolean flag = false;
-		int count = strike;
-		if(count == 3){
-			flag  = true;
-			break;
-		}
-	
-		}System.out.println("축하드립니다.");
-		
-		sc.close();
-	
-	
-	
-		
-		
-		
-		
-		
+4. 개발 환경 설정 방법
+none
 
-	}
-}
+5. 기여방법
+none
 
+6. 로그 변경
+none
+
+7. 크레딧
+none
+
+8. 라이센스
+none
+
+9. 연락처
+
+01041284187
