@@ -4,92 +4,122 @@ public class Character {
 
 	//게임을 만드는 케릭터 인스턴스
 	
-		String name; 	//이름
-		int maxHp; 		//최대체력
-		int maxMp; 		//최대마나
-		int hp; 		//체력
-		int mp; 		//마나
-		int att;		//공격력
-		int def;		//방어력
-		int level;		//레벨
-		int exp; 		//경험치
-		Item[] items;	//보유 아이템
+	String name; 	//이름
+	int maxHp; 		//최대체력
+	int maxMp; 		//최대마나
+	int hp; 		//체력
+	int mp; 		//마나
+	int att;		//공격력
+	int def;		//방어력
+	int level;		//레벨
+	int exp; 		//경험치
+	Item[] items;	//보유 아이템
+	PokeMon[] pokes;
+	PokeMon p;
+
+	
+//초기화를 해야한다.
+	Character(String name, int hp, int mp, int att, int def){
 		
-	//초기화를 해야한다.
-		Character(String name, int hp, int mp, int att, int def){
-			this.name = name;
-			this.maxHp = hp;
-			this.maxMp = mp;
-			this.hp = this.maxHp;
-			this.mp = this.maxMp;
-			this.att = att;
-			this.def = def;
-			this.level = 1;
-			this.exp = 0;
-			this.items = new Item[10];			
-		}
-		
-		void showInfo(){
-			System.out.println("============================");
-			System.out.println("------------상태-------------");
-			System.out.println("이름 : " + name);
-			System.out.println("레벨 : " + level + "(" + exp + "/100");
-			System.out.println("체력 : " + hp + "/" + maxHp);
-			System.out.println("마나 : " + mp + "/" + maxMp);
-			System.out.println("공격 : " + att);
-			System.out.println("방어 : " + def);
-			System.out.println("-----------아이템-------------");
-			for(int i =0; i < items.length; i++){
-				if(items[i] != null){
-					System.out.println(items[i].itemInfo());
-				}
-			}
-			System.out.println("============================");
-			
-		}
-		
-		void attack(Monster m){
-			int damage = att - m.def;
-			damage = damage <= 0 ? 1: damage; //데미지가 0 이하면 최소한 1은 되도록
-			m.hp = m.hp < damage ? m.hp - m.hp : m.hp - damage; //데미지가 체력보다 높으면 -값이 나오지 않게. 체력만큼만 닳도록.
-			System.out.println(name + "가 공격으로 " + m.name + "에게" 
-					+ damage + "만큼 데미지를 주엇습니다.");
-			System.out.println(m.name + "의 남은 hp : " + m.hp);
-		}
-		void getExp(int exp){ //얼마만큼 경험치를 얻었느냐.
-			System.out.println(exp + "의 경험치를 획득하였습니다.");
-			this.exp += exp;
-			while(100 <= this.exp){ //경험치가 200만큼 오게 된다면. 레벨업 자동으로
-				levelUp();
-				this.exp -= 100;
+		this.name = name;
+		this.maxHp = hp;
+		this.maxMp = mp;
+		this.hp = this.maxHp;
+		this.mp = this.maxMp;
+		this.att = att;
+		this.def = def;
+		this.level = 1;
+		this.exp = 0;
+		this.items = new Item[10];			
+		this.pokes = new PokeMon[5];
+	}
+				
+	void showInfo(){
+		System.out.println("\t\t\t\t============================");
+		System.out.println("\t\t\t\t------------상태-------------");
+		System.out.println("\t\t\t\t이름 : " + name);
+		System.out.println("\t\t\t\t레벨 : " + level + "(" + exp + "/100)");
+		System.out.println("\t\t\t\t체력 : " + hp + "/" + maxHp);
+		System.out.println("\t\t\t\t마나 : " + mp + "/" + maxMp);
+		System.out.println("\t\t\t\t공격 : " + att);
+		System.out.println("\t\t\t\t방어 : " + def);
+		System.out.println("\t\t\t\t-----------아이템-------------");
+		for(int i =0; i < items.length; i++){
+			if(items[i] != null){
+				System.out.print(items[i].itemInfo());
 			}
 		}
-		
-		void levelUp(){
-			level++;
-			maxHp += 10;
-			maxMp += 5;
-			att += 2;
-			def += 2;
-			hp = maxHp;
-			mp = maxMp;
-			System.out.println("LEVEL UP!!");
-		}
-		
-		void getItem(Item item){
-			System.out.println(item.name + "을 획득하였습니다.");
-			for(int i =0; i <items.length; i++){
-				if(items[i]==null){
-					items[i] = item;
-					break;
-				}
+		System.out.println("\t\t\t\t============================");
+		System.out.println("\t\t\t\t----------소유한 포켓몬----------");
+		for(int i =0; i < pokes.length; i++){
+			if(pokes[i] != null){
+				System.out.println(pokes[i].pokeInfo());
 			}
-			maxHp += item.hp;
-			maxMp += item.mp;
-			att += item.att;
-			def += item.def;
-			
 		}
+		System.out.println("\t\t\t\t============================");
+		System.out.println();
+		System.out.println();
+	}
+	
+	void attack(Monster m){
+		int damage = att - m.def;
+		damage = damage <= 0 ? 1: damage; //데미지가 0 이하면 최소한 1은 되도록
+		m.hp = m.hp < damage ? m.hp - m.hp : m.hp - damage; //데미지가 체력보다 높으면 -값이 나오지 않게. 체력만큼만 닳도록.
+		
+		System.out.println("☺꿈틀");
+		System.out.println("꿈틀☺");
+		System.out.println("\t\t\t"+name + "(이)가 " + m.name + "의" 
+				+ damage + "포획을 시도합니다!");
+		System.out.println("\t\t\t"+m.name + "의 남은 hp : " + m.hp);
+	}
+	void getExp(int exp){ //얼마만큼 경험치를 얻었느냐.
+		System.out.println("\t\t\t"+exp + "의 경험치를 획득하였습니다.");
+		this.exp += exp;
+		while(100 <= this.exp){ //경험치가 200만큼 오게 된다면. 레벨업 자동으로
+			levelUp();
+			this.exp -= 100;
+		}
+	}
+	
+	void levelUp(){
+		level++;
+		maxHp += 10;
+		maxMp += 5;
+		att += 2;
+		def += 2;
+		hp = maxHp;
+		mp = maxMp;
+		System.out.println("\t\t"+"LEVEL UP!!");
+	}
+	
+	void getItem(Item item){
+		System.out.println("\t\t\t\t"+item.name + "을 획득하였습니다.");
+		for(int i =0; i <items.length; i++){
+			if(items[i]==null){
+				items[i] = item;
+				break;
+			}
+		}
+		maxHp += item.hp;
+		maxMp += item.mp;
+		att += item.att;
+		def += item.def;
+		
+	}
+	void getPokeMon(PokeMon poke){
+		System.out.println("\t\t\t\t"+poke.name + "을 획득하였습니다.");
+		for(int i =0; i <pokes.length; i++){
+			if(pokes[i]==null){
+				pokes[i] = poke;
+			if(pokes[i].name == poke.name){
+				pokes[i] = poke;
+			}	
+				break;
+			}
+		}
+
+		
+	}
 		
 		
 }

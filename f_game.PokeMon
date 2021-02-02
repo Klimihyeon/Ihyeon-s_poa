@@ -1,0 +1,112 @@
+package f_game;
+
+public class PokeMon {
+	String name; // 이름
+	int maxHp; // 최대체력
+	int maxMp; // 최대마나
+	int hp; // 체력
+	int mp; // 마나
+	int att; // 공격력
+	int def; // 방어력
+	int level;		//레벨
+	int exp; 		//경험치
+	Item[] items;	//보유 아이템
+
+
+	PokeMon(String name, int hp, int mp, int att, int def) {
+		this.name = name;
+		this.maxHp = hp;
+		this.maxMp = mp;
+		this.hp = this.maxHp;
+		this.mp = this.maxMp;
+		this.att = att;
+		this.def = def;
+		this.level = 1;
+		this.exp = 0;
+		this.items = new Item[10];			
+	}
+	void getExp(int exp){ //얼마만큼 경험치를 얻었느냐.
+		System.out.println("\t\t\t"+name+"의"+ "의 경험치 : "+exp );
+		this.exp += exp;
+		while(100 <= this.exp){ //경험치가 200만큼 오게 된다면. 레벨업 자동으로
+			levelUp();
+			this.exp -= 100;
+		}
+	}
+	void levelUp(){
+		level++;
+		maxHp += 2;
+		maxMp += 2;
+		att += 2;
+		def += 1;
+		hp = maxHp;
+		mp = maxMp;
+		System.out.println("\t\t"+name + "이(가) LEVEL이 올랐습니다!");
+	}
+	
+	void attackp(Monster m){
+		System.out.println("\t\t\t\t"+name +": "+ name +"!!!");
+		
+		int damage = att - m.def;
+		int luck = (int)(Math.random()*9+1);
+		if(luck == 7 || luck == 3){
+			damage= att*luck - m.def;
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+			System.out.println("\t\t\t\t\t크리티컬!!!!!");
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+		}
+		damage = damage <= 0 ? 1: damage; //데미지가 0 이하면 최소한 1은 되도록
+		m.hp = m.hp < damage ? m.hp - m.hp : m.hp - damage; //데미지가 체력보다 높으면 -값이 나오지 않게. 체력만큼만 닳도록.
+		System.out.println("\t\t\t>>>"+name + "가 공격으로 " + m.name + "에게" 
+				+ damage  +  "만큼 데미지를 주엇습니다.");
+		System.out.println("\t\t\t>>>"+m.name + "의 남은 hp : " + m.hp);
+		}
+	
+	void sattackp(Monster m){
+		if(mp >= 10){
+		int luck = (int)(Math.random()*9+1);
+		if(luck == 7 || luck == 3){
+			luck = 3;
+			System.out.println("\t\t\t\t크리티컬!!!!");
+		}
+		int damage = att*level*luck-m.def;
+		damage = damage <= 0 ? 1: damage; //데미지가 0 이하면 최소한 1은 되도록
+		m.hp = m.hp < damage ? m.hp - m.hp : m.hp - damage;
+		mp = mp <= 0 ? 1 : damage;
+		this.mp = mp-10; 
+		System.out.println("\t\t\t"+name + "이(가) 공격으로 " + m.name + "에게" 
+				+ damage + "만큼 데미지를 주엇습니다.");
+		System.out.println();
+		System.out.println("\t\t\t\t"+m.name + "의 남은 hp : " + m.hp);
+		System.out.println();
+		System.out.println("\t\t\t\t"+name + "의 남은 mp : " + mp);}
+		else{System.out.println("\t\t\t\t"+"mp가 부족해서 스킬을 시전하지 못했습니다.");
+		System.out.println("\t\t\t\t"+"mp를 관리해주세요." + "현재 보유mp : " + mp);}
+	}
+
+
+	String pokeInfo(){
+		String info = "\t\t\t\t레벨 : " + level + "(" + exp + "/100)";
+		System.out.println("\t\t\t\t포켓몬 : "+ name);
+		return info;		
+	}
+	void showInfo(){
+		System.out.println("\t\t\t\t============================");
+		System.out.println("\t\t\t\t------------상태-------------");
+		System.out.println("\t\t\t\t이름 : " + name);
+		System.out.println("\t\t\t\t레벨 : " + level + "(" + exp + "/100)");
+		System.out.println("\t\t\t\t체력 : " + hp + "/" + maxHp);
+		System.out.println("\t\t\t\t마나 : " + mp + "/" + maxMp);
+		System.out.println("\t\t\t\t공격 : " + att);
+		System.out.println("\t\t\t\t방어 : " + def);
+		System.out.println("\t\t\t\t도감 설명은 다음 업데이트에...");
+		System.out.println("\t\t\t\t============================");
+		System.out.println();
+		System.out.println();
+	}
+
+
+
+		
+	
+}
