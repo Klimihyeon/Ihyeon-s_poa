@@ -11,6 +11,7 @@ public class MyGame {
 	Item[] items;
 	PokeMon[] pokes;
 	PokeMon[] mypokes;
+
 	Scanner sc = new Scanner(System.in);
 	String blank = sc.nextLine();
 	int input = 0;
@@ -19,24 +20,37 @@ public class MyGame {
 	
 	void itemlist(){
 	
-		items = new Item[5];
+		items = new Item[6];
 		items[0] = new Item("꼬부기의 등딱지", 0, 5, 0, 5);
 		items[1] = new Item("피카츄의 전기꼬리", 0, 5, 10, 0);
 		items[2] = new Item("이브이의 솜털목도리", 20, 10, 0, 20);
 		items[3] = new Item("이상해씨의 뭉툭한 송곳니", 0, 10, 30, 10);
 		items[4] = new Item("파이리의 생명의 불꽃", 20, 20, 20, 0);
+		items[5] = new Item("뮤츠의 견갑골", 1000, 1000, 1000, 1000);
 		
 	
 	}
 	void pokemonlist(){
 		
-		pokes = new PokeMon[5];
+		pokes = new PokeMon[7];
 		pokes[0] = new PokeMon("피카츄", 10, 0, 10, 15);
 		pokes[1] = new PokeMon("이상해씨", 15, 10, 9, 5);
 		pokes[2] = new PokeMon("파이리", 8, 10, 10, 5);
 		pokes[3] = new PokeMon("꼬부기", 10, 10, 8, 8);
 		pokes[4] = new PokeMon("이브이", 15, 0, 15, 10);
+		pokes[5] = new PokeMon("뮤츠", 1000, 1000, 500, 500);
+		pokes[6] = new PokeMon("고양이", 1000, 1000, 500, 500);
+		
+		mypokes = new PokeMon[7];
+		mypokes[0] = new PokeMon("디폴트", 1, 1, 1, 1);
+		mypokes[1] = new PokeMon("디폴트", 1, 1, 1, 1);
+		mypokes[2] = new PokeMon("디폴트", 1, 1, 1, 1);
+		mypokes[3] = new PokeMon("디폴트", 1, 1, 1, 1);
+		mypokes[4] = new PokeMon("디폴트", 1, 1, 1, 1);
+		mypokes[5] = new PokeMon("디폴트", 1, 1, 1, 1);
+		mypokes[6] = new PokeMon("디폴트", 1, 1, 1, 1);
 
+		
 		}
 	MyGame() {
 		itemlist();
@@ -50,13 +64,14 @@ public class MyGame {
 		System.out.println();
 		System.out.println("\t\t\t\t계속진행하려면  enter를 눌러주세요.");
 		blank = sc.nextLine();
+
 		System.out.print("\t\t당신의 이름을 알려주세요.");
 		System.out.println(" 한글입력시 커서 아래로 하고 입력해야 오류 안납니다.");
 		String myName;
 		myName = sc.nextLine();
 		System.out.println("ヽ(*´∀`)ノ  : " + myName +"님이시군요.");
 		
-		c = new Character(""+myName, 20, 0, 9, 1);
+		c = new Character(""+myName, 20, 0, 15, 1);
 		p = new PokeMon("디폴트", 1, 1, 1, 1);
 		
 		System.out.println("ヽ(*´∀`)ノ  : 당신과 함께할 포켓몬을 골라주세요.");
@@ -70,7 +85,6 @@ public class MyGame {
 			c.getPokeMon(pokes[1]);
 			p = new PokeMon("이상해씨", 15, 10, 7, 5);
 			p.showInfo();
-
 			break;
 		case 2 :
 			System.out.println("ヽ(*´∀`)ノ  : 파이리를 선택하셨습니다.");
@@ -102,32 +116,16 @@ public class MyGame {
 	
 
 	void start() {
-		int input = 0;
-		deck : for(int i=0; i < pokes.length; i++){
-			int count = 0;
-			for(int j=0; j < pokes.length; j++){
-				if(pokes[i] != pokes[j]){
-				 count++;			
-				}if(count == 5){	
-				}
-			}
-			flag = true;
-			break deck;
-			}
+		
 		while (true) {
 			
-			if(flag = true ){
-				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
-				System.out.println("\t\t\t\t포켓몬 도감을 다 모으셨습니다. 축하드립니다!!!!");
-				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
-			}
+			
 
 			System.out.println("                        ");
 			System.out.println("ヽ(*´∀`)ノ  : 무엇을 하시겠습니까?");
-			System.out.println("\t\t\t\t1.정보창\t2.사냥\t3.휴식\t4.종료");
+			System.out.println("\t\t\t1.정보창\t\t\t2.포켓몬바꾸기\t\t\t\n\t\t\t3.사냥\t\t\t4.휴식\n\t\t\t5.도감을 검사맡고 종료");
 			System.out.println("                        ");
-			System.out.println("                        ");
-			System.out.println("                        ");
+
 
 
 			
@@ -150,22 +148,54 @@ public class MyGame {
 					break;
 				default:
 					break;} break;
+				
 			case 2:
-				System.out.println("                        ");
-				System.out.println("                        ");
-				System.out.println("                        ");
+				System.out.println("\t\t\t\t1."+p.name +"를 창고로 넣고 "+c.pokes[1].name+"을 키웁니다.");			
+				for(int i =0; i < c.pokes.length; i++){
+					if(c.pokes[i] != null){
+						System.out.println(c.pokes[i].pokeInfo());
+					}
+				}
+					input = sc.nextInt();
+				switch (input) {
+				case 1:	System.out.println("포켓몬바꾸기");		
+				
+						mypokes[0] = c.pokes[0];
+						c.pokes[0] = c.pokes[1];
+						c.pokes[1] = mypokes[0];
+					p = c.pokes[0];
+					break;
+				case 2:
+					System.out.println("");
+					System.out.println("포켓몬바꾸기");			
+					mypokes[0] = c.pokes[1];
+					c.pokes[1] = c.pokes[2];
+					c.pokes[2] = mypokes[0];
+				p = c.pokes[1];
+
+				
+					break;
+				default:
+					break;} break;
+					
+					
+					
+					
+					
+			case 3:
+
 				System.out.println("                        ");
 				System.out.println("                        ");
 				System.out.println("                        ");
 				System.out.println("ヽ(*´∀`)ノ   : 경고! 초반의 피카츄와 이브이는 쌥니다.");
 				System.out.println("                        ");
-				System.out.println("\t\t1.낚시터(꼬부기서식지)\t2.들판(피카츄서식지)    \t3.밤나무숲(이브이서식지)");
-				System.out.println("\t\t4.암석지대(파이리서식지)\t5.늪지대(이상해씨서식지)\t6.달맞이동굴(뮤츠서식지)");
+				System.out.println("\t1.낚시터(꼬부기서식지)\t2.들판(피카츄서식지)    \t3.밤나무숲(이브이서식지)");
+				System.out.println("\t4.늪지대(이상해씨서식지)\t5.암석지대(파이리서식지)\t6.달맞이동굴(뮤츠서식지)");
 				System.out.println("                        ");
 				System.out.println("\t\t\t\t7.ヽ(*´∀`)ノ 저랑 싸우시겠다구요??? ");
 				System.out.println("                        ");
 				System.out.println("                        ");
-				System.out.println("                        ");
+
 				
 				input = sc.nextInt();
 				switch (input) {
@@ -173,19 +203,19 @@ public class MyGame {
 					hunt(); // 내용이 길어지기때문에 메서드를 따로 뺀다.
 					break;
 				case 2:
-					//hunt2();
+					hunt2();
 					break;
 				case 3:
-					//hunt3();
+					hunt3();
 					break;
 				case 4:
-					//hunt4();
+					hunt4();
 					break;
 				case 5:
-					//hunt5();
+					hunt5();
 					break;
 				case 6:
-					//hunt6();
+					hunt6();
 					break;
 				case 7:
 					System.out.println("(ʘᗩʘ') : 저 엄청쌘데요?? 저랑 싸우시려구요? ");
@@ -211,7 +241,7 @@ public class MyGame {
 						break;
 					case 2:
 						System.out.println("( ￣.д￣) : 게임오버되더라도 괜찮으신가요? ");												
-						System.out.println("1.사실 뻥이야.\t2.네 놈의 혀를 잘라 향혈에 담을 것이야.");
+						System.out.println("\t\t\t\t1.사실 뻥이야.\t2.네 놈의 혀를 잘라 향혈에 담을 것이야.");
 						input = sc.nextInt();
 						switch (input) {
 						case 1:
@@ -234,18 +264,35 @@ public class MyGame {
 						case 2: 
 							System.out.println("\t\t\t\t좋습니다. 도전을 받아들이죠.");
 							}
-						//hunt4();
+						hunt7();
 						break;}
 				default:
 					break;
 				}
 				break;
 
-			case 3:
+			case 4:
 				heal();
 				break;
-			case 4:
-				
+			case 5:
+				int input = 0;
+				deck : for(int i=0; i < pokes.length; i++){
+					int count = 0;
+					for(int j=0; j < pokes.length; j++){
+						if(pokes[i] != pokes[j]){
+						 count++;			
+						}if(count == 10){	
+						}
+					}
+					
+					flag = true;
+					break deck;
+					}
+				if(flag = true ){
+					System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+					System.out.println("\t\t\t\t텍스트 포켓몬 게임을 클리하셨습니다.. 축하드립니다!!!!");
+					System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				}
 				System.out.println("\t\t\t\t종료되었습니다.이용해 주셔서 감사합니다.");
 				System.exit(0);
 
@@ -254,16 +301,16 @@ public class MyGame {
 	}
 
 	void hunt() {
+		
 		System.out.println("\t\t\t\t야생의 꼬부기가 출현했다!");
 		System.out.println();
 		System.out.println("\t\t\t\t༼ つ ◕_◕ ༽つ : 꼬부꼬부!");
 		System.out.println("=======================================================================================");
-		Monster m = new Monster("야생꼬부기", 15, 10, 8, 6, new Item[] { items[0]}, new PokeMon[] {pokes[2]});
+		Monster m = new Monster("야생꼬부기", 15, 10, 8, 6, new Item[] { items[0]}, new PokeMon[] {pokes[3]});
 		m.showInfo();
 		System.out.println("\t\t" + "포획하고 싶다면 직접싸워야 합니다.!!!!(゜д゜ノ)ノ");
 		System.out.println("\t\t" + "야생 포켓몬의 체력을 10이하로 떨어뜨려주세요.");
-		System.out.println("\t\t\t\t계속진행하려면  enter를 눌러주세요.");
-		blank = sc.nextLine();
+
 		int input = 0;
 		battle: while (true) {
 			if(m.hp <= 10){
@@ -288,7 +335,8 @@ public class MyGame {
 					if (m.hp <= 0) {
 					System.out.println("\t\t\t"+m.name + "을 처치하였습니다.");
 					System.out.println("\t\t\t\t" + "༼ つ ◕_◕ ༽つ : 꼬부우우....");
-					p.getExp(70);
+					c.getExp(100);
+					p.getExp(100);
 					c.getItem(m.itemDrop());
 					System.out.println("\t\t\t\t 전투를 종료합니다.");
 					break battle;
@@ -314,7 +362,7 @@ public class MyGame {
 					if (m.hp <= 0) {
 						System.out.println(m.name + "을 처치하였습니다.");
 						System.out.println("\t\t\t\t" + "༼ つ ◕_◕ ༽つ : 꼬부우우....");
-						p.getExp(70);
+						p.getExp(100);
 						c.getItem(m.itemDrop());
 						System.out.println("\t\t\t\t 전투를 종료합니다.");
 						break battle;
@@ -339,8 +387,11 @@ public class MyGame {
 				System.out.println("\t\t\t\t 슈웅 ~~~~~~ ☺");
 				c.attack(m);
 				if (m.hp <= 0) {
+					System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
 					System.out.println("\t\t\t\t" + "✌♫♪˙❤‿❤˙♫♪✌");
 					System.out.println("\t\t\t\t" + m.name + "포획에 성공 하였습니다.");
+					System.out.println("\t\t\t\t" + m.name + "은 창고로 전송되었습니다.");
+					System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
 					c.getExp(150);
 					c.getItem(m.itemDrop());
 					c.getPokeMon(m.pokeDrop());
@@ -351,7 +402,7 @@ public class MyGame {
 					System.out.println("\t\t\t\t" + "안타깝게도 잡히지 않았습니다.");
 					System.out.println("\t\t\t\t" + "야생 포켓몬의 체력을 최대한 떨어뜨려주세요.");
 				}
-				if (p.hp <= 0){
+				if (c.hp <= 0){
 					System.out.println("\t\t\t\t" + "༼ つ ◕_◕ ༽つ : 훗! 연약해");
 					System.out.println("\t\t\t\t" + c.name + "는 쓰러졌습니다." );
 					System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
@@ -374,7 +425,763 @@ public class MyGame {
 			}	
 		}
 	}
+void hunt2() {
+		
+		System.out.println("\t\t\t\t야생의 피카츄가 출현했다!");
+		System.out.println();
+		System.out.println("\t\t\t\t(｡◕‿‿◕｡): 피카피카!");
+		System.out.println("=======================================================================================");
+		Monster m = new Monster("야생피카츄", 40, 10, 15, 10, new Item[] { items[1]}, new PokeMon[] {pokes[0]});
+		m.showInfo();
+		System.out.println("\t\t" + "포획하고 싶다면 직접싸워야 합니다.!!!!(゜д゜ノ)ノ");
+		System.out.println("\t\t" + "야생 포켓몬의 체력을 10이하로 떨어뜨려주세요.");
+
+		int input = 0;
+		battle: while (true) {
+			if(m.hp <= 10){
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				System.out.println("\t\t\tヽ(*´∀`)ノ   : 포획찬스!!! 지금이 기회에요!!");
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+
+			}
+			System.out.println("\t\t\t1.공격\t2.포켓몬포획\t3.방어 \t 4.도주");
+			System.out.println("=======================================================================================");
+			Scanner sc = new Scanner(System.in);
+			input = sc.nextInt();
+			main : switch (input) {
+			case 1:
+				System.out.println("\t\t\t1.일반공격\t\t2.스킬사용");
+				System.out.println("\t\t\t가랏!" + p.name + "!!");
+				input = sc.nextInt();
+				switch (input) {
+				case 1:
+					System.out.println();
+					p.attackp(m);
+					if (m.hp <= 0) {
+					System.out.println("\t\t\t"+m.name + "을 처치하였습니다.");
+					System.out.println("\t\t\t\t" + "(｡◕‿‿◕｡) : 삐까삐....");
+					c.getExp(150);
+					p.getExp(150);
+					c.getItem(m.itemDrop());
+					p.getItem(m.itemDrop());
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+					}
+					System.out.println("\t\t\t\t(｡◕‿‿◕｡) : 삐까아!");
+					System.out.println("\t\t\t야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+					m.attackp(p);
+					if (p.hp <= 0){
+					System.out.println("\t\t\t\t(｡◕‿‿◕｡) : 훗! 연약해");
+					System.out.println("\t\t\t"+p.name + "는 쓰러졌습니다." );
+					System.out.println("\t\t\t더 이상 싸울수가 없어 도주했습니다." );
+					System.out.println("\t\t\t경험치를 모두 잃어버렸습니다." );
+					System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+					p.getExp(-100);
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;}break;
+				
+				case 2:
+					System.out.print("\t\t" + p.name + "의 스킬공격!");
+					System.out.println(p.name + ": " + " 아뵤! ( ง ᵒ̌ ∽ᵒ̌)ง⁼³₌₃ ");
+					p.sattackp(m);
+					System.out.println("\t\t\t\t" + "(｡◕‿‿◕｡) : 아파....");
+					if (m.hp <= 0) {
+						System.out.println(m.name + "을 처치하였습니다.");
+						System.out.println("\t\t\t\t" + "(｡◕‿‿◕｡) : 삐까삐이....");
+						p.getExp(150);
+						c.getItem(m.itemDrop());
+						System.out.println("\t\t\t\t 전투를 종료합니다.");
+						break battle;
+					}
+					System.out.println("\t\t\t\t" + "야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+					System.out.println("\t\t\t\t" + "(｡◕‿‿◕｡) : 삐까아!");
+					m.attackp(p);
+					if (p.hp <= 0){
+						System.out.println("\t\t\t\t" + "(｡◕‿‿◕｡) : 훗! 연약해");
+						System.out.println("\t\t\t\t" + p.name + "는 쓰러졌습니다." );
+						System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+						System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+						System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+						p.getExp(-100);
+						System.out.println("\t\t\t\t 전투를 종료합니다.");
+						break battle;
+						}break;
+				}break;
+				
+			case 2:
+				System.out.println("\t\t\t\t가랏 몬스터볼!");
+				System.out.println("\t\t\t\t 슈웅 ~~~~~~ ☺");
+				c.attack(m);
+				if (m.hp <= 0) {
+					System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+					System.out.println("\t\t\t\t" + "✌♫♪˙❤‿❤˙♫♪✌");
+					System.out.println("\t\t\t\t" + m.name + "포획에 성공 하였습니다.");
+					System.out.println("\t\t\t\t" + m.name + "은 창고로 전송되었습니다.");
+					System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+					c.getExp(150);
+					c.getItem(m.itemDrop());
+					c.getPokeMon(m.pokeDrop());
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+				}
+				if(m.hp >10){
+					System.out.println("\t\t\t\t" + "안타깝게도 잡히지 않았습니다.");
+					System.out.println("\t\t\t\t" + "야생 포켓몬의 체력을 최대한 떨어뜨려주세요.");
+				}
+				if (c.hp <= 0){
+					System.out.println("\t\t\t\t" + "(｡◕‿‿◕｡) : 훗! 연약해");
+					System.out.println("\t\t\t\t" + c.name + "는 쓰러졌습니다." );
+					System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+					System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+					System.out.println("？(;￫д￩)ｯ! 자신의 몸을  더 소중히 다뤄주세요..." );
+					c.getExp(-100);
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+				}m.attackc(c);
+				break;
+			case 3:
+				p.def++;
+				System.out.println("\t\t\t\t"+ p.name+"의 방어가 3만큼 올라갔습니다." );
+				m.attackp(p);
+				break;
+				
+			case 4:
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}	
+		}
+	}
+void hunt3() {
 	
+	System.out.println("\t\t\t\t야생의 이브이가 출현했다!");
+	System.out.println();
+	System.out.println("\t\t\t\t(◕‿↼): 이브이!");
+	System.out.println("=======================================================================================");
+	Monster m = new Monster("야생이브이", 80, 50, 30, 20, new Item[] { items[2]}, new PokeMon[] {pokes[4]});
+	m.showInfo();
+	System.out.println("\t\t" + "포획하고 싶다면 직접싸워야 합니다.!!!!(゜д゜ノ)ノ");
+	System.out.println("\t\t" + "야생 포켓몬의 체력을 10이하로 떨어뜨려주세요.");
+
+	int input = 0;
+	battle: while (true) {
+		if(m.hp <= 10){
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+			System.out.println("\t\t\tヽ(*´∀`)ノ   : 포획찬스!!! 지금이 기회에요!!");
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+
+		}
+		System.out.println("\t\t\t1.공격\t2.포켓몬포획\t3.방어 \t 4.도주");
+		System.out.println("=======================================================================================");
+		Scanner sc = new Scanner(System.in);
+		input = sc.nextInt();
+		main : switch (input) {
+		case 1:
+			System.out.println("\t\t\t1.일반공격\t\t2.스킬사용");
+			System.out.println("\t\t\t가랏!" + p.name + "!!");
+			input = sc.nextInt();
+			switch (input) {
+			case 1:
+				System.out.println();
+				p.attackp(m);
+				if (m.hp <= 0) {
+				System.out.println("\t\t\t"+m.name + "을 처치하였습니다.");
+				System.out.println("\t\t\t\t" + "(◕‿↼) : 이브이....");
+				c.getExp(500);
+				p.getExp(500);
+				c.getItem(m.itemDrop());
+
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+				}
+				System.out.println("\t\t\t\t(◕‿↼ ): 이브잇!");
+				System.out.println("\t\t\t야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				m.attackp(p);
+				if (p.hp <= 0){
+				System.out.println("\t\t\t\t(◕‿↼) : 훗! 연약해");
+				System.out.println("\t\t\t"+p.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+				p.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;}break;
+			
+			case 2:
+				System.out.print("\t\t" + p.name + "의 스킬공격!");
+				System.out.println(p.name + ": " + " 아뵤! ( ง ᵒ̌ ∽ᵒ̌)ง⁼³₌₃ ");
+				p.sattackp(m);
+				System.out.println("\t\t\t\t" + "(◕‿↼) : 아파....");
+				if (m.hp <= 0) {
+					System.out.println(m.name + "을 처치하였습니다.");
+					System.out.println("\t\t\t\t" + "(◕‿↼) : 삐까삐이....");
+					p.getExp(500);
+					c.getItem(m.itemDrop());
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+				}
+				System.out.println("\t\t\t\t" + "야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				System.out.println("\t\t\t\t" + "(◕‿↼) : 삐까아!");
+				m.attackp(p);
+				if (p.hp <= 0){
+					System.out.println("\t\t\t\t" + "(◕‿↼) : 훗! 연약해");
+					System.out.println("\t\t\t\t" + p.name + "는 쓰러졌습니다." );
+					System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+					System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+					System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+					p.getExp(-100);
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+					}break;
+			}break;
+			
+		case 2:
+			System.out.println("\t\t\t\t가랏 몬스터볼!");
+			System.out.println("\t\t\t\t 슈웅 ~~~~~~ ☺");
+			c.attack(m);
+			if (m.hp <= 0) {
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				System.out.println("\t\t\t\t" + "✌♫♪˙❤‿❤˙♫♪✌");
+				System.out.println("\t\t\t\t" + m.name + "포획에 성공 하였습니다.");
+				System.out.println("\t\t\t\t" + m.name + "은 창고로 전송되었습니다.");
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				c.getExp(500);
+				c.getItem(m.itemDrop());
+				c.getPokeMon(m.pokeDrop());
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}
+			if(m.hp >10){
+				System.out.println("\t\t\t\t" + "안타깝게도 잡히지 않았습니다.");
+				System.out.println("\t\t\t\t" + "야생 포켓몬의 체력을 최대한 떨어뜨려주세요.");
+			}
+			if (c.hp <= 0){
+				System.out.println("\t\t\t\t" + "(◕‿↼) : 훗! 연약해");
+				System.out.println("\t\t\t\t" + c.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 자신의 몸을  더 소중히 다뤄주세요..." );
+				c.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}m.attackc(c);
+			break;
+		case 3:
+			p.def++;
+			System.out.println("\t\t\t\t"+ p.name+"의 방어가 3만큼 올라갔습니다." );
+			m.attackp(p);
+			break;
+			
+		case 4:
+			System.out.println("\t\t\t\t 전투를 종료합니다.");
+			break battle;
+		}	
+	}
+}
+void hunt4() {
+	
+	System.out.println("\t\t\t\t야생의이상해씨가 출현했다!");
+	System.out.println();
+	System.out.println("\t\t\t\t(✪‿✪): 이상해씨씨!");
+	System.out.println("=======================================================================================");
+	Monster m = new Monster("야생이상해씨", 200, 10, 80, 50, new Item[] { items[3]}, new PokeMon[] {pokes[1]});
+	m.showInfo();
+	System.out.println("\t\t" + "포획하고 싶다면 직접싸워야 합니다.!!!!(゜д゜ノ)ノ");
+	System.out.println("\t\t" + "야생 포켓몬의 체력을 10이하로 떨어뜨려주세요.");
+
+	int input = 0;
+	battle: while (true) {
+		if(m.hp <= 10){
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+			System.out.println("\t\t\tヽ(*´∀`)ノ   : 포획찬스!!! 지금이 기회에요!!");
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+
+		}
+		System.out.println("\t\t\t1.공격\t2.포켓몬포획\t3.방어 \t 4.도주");
+		System.out.println("=======================================================================================");
+		Scanner sc = new Scanner(System.in);
+		input = sc.nextInt();
+		main : switch (input) {
+		case 1:
+			System.out.println("\t\t\t1.일반공격\t\t2.스킬사용");
+			System.out.println("\t\t\t가랏!" + p.name + "!!");
+			input = sc.nextInt();
+			switch (input) {
+			case 1:
+				System.out.println();
+				p.attackp(m);
+				if (m.hp <= 0) {
+				System.out.println("\t\t\t"+m.name + "을 처치하였습니다.");
+				System.out.println("\t\t\t\t" + "(✪‿✪) : 이상이상....");
+				c.getExp(500);
+				p.getExp(500);
+				c.getItem(m.itemDrop());
+				p.getItem(m.itemDrop());
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+				}
+				System.out.println("\t\t\t\t(✪‿✪): 씨씨!");
+				System.out.println("\t\t\t야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				m.attackp(p);
+				if (p.hp <= 0){
+				System.out.println("\t\t\t\t(✪‿✪) : 훗! 연약해");
+				System.out.println("\t\t\t"+p.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+				p.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;}break;
+			
+			case 2:
+				System.out.print("\t\t" + p.name + "의 스킬공격!");
+				System.out.println(p.name + ": " + " 아뵤! ( ง ᵒ̌ ∽ᵒ̌)ง⁼³₌₃ ");
+				p.sattackp(m);
+				System.out.println("\t\t\t\t" + "(✪‿✪) : 이상해씨....");
+				if (m.hp <= 0) {
+					System.out.println(m.name + "을 처치하였습니다.");
+					System.out.println("\t\t\t\t" + "(✪‿✪) : 씨이이....");
+					p.getExp(500);
+					c.getItem(m.itemDrop());
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+				}
+				System.out.println("\t\t\t\t" + "야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				System.out.println("\t\t\t\t" + "(✪‿✪) : 씨씨!");
+				m.attackp(p);
+				if (p.hp <= 0){
+					System.out.println("\t\t\t\t" + "(✪‿✪) : 훗! 연약해");
+					System.out.println("\t\t\t\t" + p.name + "는 쓰러졌습니다." );
+					System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+					System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+					System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+					p.getExp(-100);
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+					}break;
+			}break;
+			
+		case 2:
+			System.out.println("\t\t\t\t가랏 몬스터볼!");
+			System.out.println("\t\t\t\t 슈웅 ~~~~~~ ☺");
+			c.attack(m);
+			if (m.hp <= 0) {
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				System.out.println("\t\t\t\t" + "✌♫♪˙❤‿❤˙♫♪✌");
+				System.out.println("\t\t\t\t" + m.name + "포획에 성공 하였습니다.");
+				System.out.println("\t\t\t\t" + m.name + "은 창고로 전송되었습니다.");
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				c.getExp(500);
+				c.getItem(m.itemDrop());
+				c.getPokeMon(m.pokeDrop());
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}
+			if(m.hp >10){
+				System.out.println("\t\t\t\t" + "안타깝게도 잡히지 않았습니다.");
+				System.out.println("\t\t\t\t" + "야생 포켓몬의 체력을 최대한 떨어뜨려주세요.");
+			}
+			if (c.hp <= 0){
+				System.out.println("\t\t\t\t" + "(✪‿✪) : 훗! 연약해");
+				System.out.println("\t\t\t\t" + c.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 자신의 몸을  더 소중히 다뤄주세요..." );
+				c.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}m.attackc(c);
+			break;
+		case 3:
+			p.def++;
+			System.out.println("\t\t\t\t"+ p.name+"의 방어가 20만큼 올라갔습니다." );
+			m.attackp(p);
+			break;
+			
+		case 4:
+			System.out.println("\t\t\t\t 전투를 종료합니다.");
+			break battle;
+		}	
+	}
+}
+void hunt5() {
+	
+	System.out.println("\t\t\t\t야생의파이리가 출현했다!");
+	System.out.println();
+	System.out.println("\t\t\t\t(ｏ゜―゜ｏ): 파이리이이이!");
+	System.out.println("=======================================================================================");
+	Monster m = new Monster("야생파이리", 300, 10, 100, 60, new Item[] { items[4]}, new PokeMon[] {pokes[2]});
+	m.showInfo();
+	System.out.println("\t\t" + "포획하고 싶다면 직접싸워야 합니다.!!!!(゜д゜ノ)ノ");
+	System.out.println("\t\t" + "야생 포켓몬의 체력을 10이하로 떨어뜨려주세요.");
+
+	int input = 0;
+	battle: while (true) {
+		if(m.hp <= 10){
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+			System.out.println("\t\t\tヽ(*´∀`)ノ   : 포획찬스!!! 지금이 기회에요!!");
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+
+		}
+		System.out.println("\t\t\t1.공격\t2.포켓몬포획\t3.방어 \t 4.도주");
+		System.out.println("=======================================================================================");
+		Scanner sc = new Scanner(System.in);
+		input = sc.nextInt();
+		main : switch (input) {
+		case 1:
+			System.out.println("\t\t\t1.일반공격\t\t2.스킬사용");
+			System.out.println("\t\t\t가랏!" + p.name + "!!");
+			input = sc.nextInt();
+			switch (input) {
+			case 1:
+				System.out.println();
+				p.attackp(m);
+				if (m.hp <= 0) {
+				System.out.println("\t\t\t"+m.name + "을 처치하였습니다.");
+				System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : ㅍㅏ이리....");
+				c.getExp(500);
+				p.getExp(500);
+				c.getItem(m.itemDrop());
+				p.getItem(m.itemDrop());
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+				}
+				System.out.println("\t\t\t\t(ｏ゜―゜ｏ): 파이리!");
+				System.out.println("\t\t\t야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				m.attackp(p);
+				if (p.hp <= 0){
+				System.out.println("\t\t\t\t(ｏ゜―゜ｏ) : 훗! 연약해");
+				System.out.println("\t\t\t"+p.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+				p.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;}break;
+			
+			case 2:
+				System.out.print("\t\t" + p.name + "의 스킬공격!");
+				System.out.println(p.name + ": " + " 아뵤! ( ง ᵒ̌ ∽ᵒ̌)ง⁼³₌₃ ");
+				p.sattackp(m);
+				System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 이상해씨....");
+				if (m.hp <= 0) {
+					System.out.println(m.name + "을 처치하였습니다.");
+					System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 씨이이....");
+					p.getExp(500);
+					c.getItem(m.itemDrop());
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+				}
+				System.out.println("\t\t\t\t" + "야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 파이릿!");
+				m.attackp(p);
+				if (p.hp <= 0){
+					System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 훗! 연약해");
+					System.out.println("\t\t\t\t" + p.name + "는 쓰러졌습니다." );
+					System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+					System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+					System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+					p.getExp(-100);
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+					}break;
+			}break;
+			
+		case 2:
+			System.out.println("\t\t\t\t가랏 몬스터볼!");
+			System.out.println("\t\t\t\t 슈웅 ~~~~~~ ☺");
+			c.attack(m);
+			if (m.hp <= 0) {
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				System.out.println("\t\t\t\t" + "✌♫♪˙❤‿❤˙♫♪✌");
+				System.out.println("\t\t\t\t" + m.name + "포획에 성공 하였습니다.");
+				System.out.println("\t\t\t\t" + m.name + "은 창고로 전송되었습니다.");
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				c.getExp(500);
+				c.getItem(m.itemDrop());
+				c.getPokeMon(m.pokeDrop());
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}
+			if(m.hp >10){
+				System.out.println("\t\t\t\t" + "안타깝게도 잡히지 않았습니다.");
+				System.out.println("\t\t\t\t" + "야생 포켓몬의 체력을 최대한 떨어뜨려주세요.");
+			}
+			if (c.hp <= 0){
+				System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 훗! 연약해");
+				System.out.println("\t\t\t\t" + c.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 자신의 몸을  더 소중히 다뤄주세요..." );
+				c.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}m.attackc(c);
+			break;
+		case 3:
+			p.def++;
+			System.out.println("\t\t\t\t"+ p.name+"의 방어가 20만큼 올라갔습니다." );
+			m.attackp(p);
+			break;
+			
+		case 4:
+			System.out.println("\t\t\t\t 전투를 종료합니다.");
+			break battle;
+		}	
+	}
+}
+void hunt6() {
+	
+	System.out.println("\t\t\t\t전설의 포켓몬 뮤츠가 출현했다!");
+	System.out.println();
+	System.out.println("\t\t\t\t (ꐦ ◣‸◢) : ....!");
+	System.out.println("=======================================================================================");
+	Monster m = new Monster("뮤츠", 1000, 500, 500, 300, new Item[] { items[4]}, new PokeMon[] {pokes[2]});
+	m.showInfo();
+	System.out.println("\t\t" + "포획하고 싶다면 직접싸워야 합니다.!!!!(゜д゜ノ)ノ");
+	System.out.println("\t\t" + "야생 포켓몬의 체력을 10이하로 떨어뜨려주세요.");
+
+	int input = 0;
+	battle: while (true) {
+		if(m.hp <= 10){
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+			System.out.println("\t\t\tヽ(*´∀`)ノ   : 포획찬스!!! 지금이 기회에요!!");
+			System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+
+		}
+		System.out.println("\t\t\t1.공격\t2.포켓몬포획\t3.방어 \t 4.도주");
+		System.out.println("=======================================================================================");
+		Scanner sc = new Scanner(System.in);
+		input = sc.nextInt();
+		main : switch (input) {
+		case 1:
+			System.out.println("\t\t\t1.일반공격\t\t2.스킬사용");
+			System.out.println("\t\t\t가랏!" + p.name + "!!");
+			input = sc.nextInt();
+			switch (input) {
+			case 1:
+				System.out.println();
+				p.attackp(m);
+				if (m.hp <= 0) {
+				System.out.println("\t\t\t"+m.name + "을 처치하였습니다.");
+				System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : ㅍㅏ이리....");
+				c.getExp(7000);
+				p.getExp(7000);
+				c.getItem(m.itemDrop());
+				p.getItem(m.itemDrop());
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+				}
+				System.out.println("\t\t\t\t(ｏ゜―゜ｏ): 파이리!");
+				System.out.println("\t\t\t야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				m.attackp(p);
+				if (p.hp <= 0){
+				System.out.println("\t\t\t\t(ｏ゜―゜ｏ) : 훗! 연약해");
+				System.out.println("\t\t\t"+p.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+				p.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;}break;
+			
+			case 2:
+				System.out.print("\t\t" + p.name + "의 스킬공격!");
+				System.out.println(p.name + ": " + " 아뵤! ( ง ᵒ̌ ∽ᵒ̌)ง⁼³₌₃ ");
+				p.sattackp(m);
+				System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 이상해씨....");
+				if (m.hp <= 0) {
+					System.out.println(m.name + "을 처치하였습니다.");
+					System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 씨이이....");
+					p.getExp(7000);
+					c.getItem(m.itemDrop());
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+				}
+				System.out.println("\t\t\t\t" + "야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 파이릿!");
+				m.attackp(p);
+				if (p.hp <= 0){
+					System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 훗! 연약해");
+					System.out.println("\t\t\t\t" + p.name + "는 쓰러졌습니다." );
+					System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+					System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+					System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+					p.getExp(-100);
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+					}break;
+			}break;
+			
+		case 2:
+			System.out.println("\t\t\t\t가랏 몬스터볼!");
+			System.out.println("\t\t\t\t 슈웅 ~~~~~~ ☺");
+			c.attack(m);
+			if (m.hp <= 0) {
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				System.out.println("\t\t\t\t" + "✌♫♪˙❤‿❤˙♫♪✌");
+				System.out.println("\t\t\t\t" + m.name + "포획에 성공 하였습니다.");
+				System.out.println("\t\t\t\t" + m.name + "은 창고로 전송되었습니다.");
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				c.getExp(7000);
+				c.getItem(m.itemDrop());
+				c.getPokeMon(m.pokeDrop());
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}
+			if(m.hp >10){
+				System.out.println("\t\t\t\t" + "안타깝게도 잡히지 않았습니다.");
+				System.out.println("\t\t\t\t" + "야생 포켓몬의 체력을 최대한 떨어뜨려주세요.");
+			}
+			if (c.hp <= 0){
+				System.out.println("\t\t\t\t" + "(ｏ゜―゜ｏ) : 훗! 연약해");
+				System.out.println("\t\t\t\t" + c.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 자신의 몸을  더 소중히 다뤄주세요..." );
+				c.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}m.attackc(c);
+			break;
+		case 3:
+			p.def++;
+			System.out.println("\t\t\t\t"+ p.name+"의 방어가 20만큼 올라갔습니다." );
+			m.attackp(p);
+			break;
+			
+		case 4:
+			System.out.println("\t\t\t\t 전투를 종료합니다.");
+			break battle;
+		}	
+	}
+}
+
+void hunt7() {
+	
+	System.out.println("\t\t\t\t야생의 고양이가 출현했다!");
+	System.out.println();
+	System.out.println("\t\t\t\tヽ(*´∀`)ノ: 덤버봐요 애송이!");
+	System.out.println("=======================================================================================");
+	Monster m = new Monster("야생고양이", 5000, 1000, 2000, 2000, new Item[] { items[4]}, new PokeMon[] {pokes[4]});
+	m.showInfo();
+
+
+	int input = 0;
+	battle: while (true) {
+		if(m.hp <= 10){
+
+
+		}
+		System.out.println("\t\t\t1.공격\t2.포켓몬포획\t3.방어 \t 4.도주");
+		System.out.println("=======================================================================================");
+		Scanner sc = new Scanner(System.in);
+		input = sc.nextInt();
+		main : switch (input) {
+		case 1:
+			System.out.println("\t\t\t1.일반공격\t\t2.스킬사용");
+			System.out.println("\t\t\t가랏!" + p.name + "!!");
+			input = sc.nextInt();
+			switch (input) {
+			case 1:
+				System.out.println();
+				p.attackp(m);
+				if (m.hp <= 0) {
+				System.out.println("\t\t\t"+m.name + "을 처치하였습니다.");
+				System.out.println("\t\t\t\t" + "ヽ(*´∀`)ノ : ....");
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				System.out.println("\t\t\t\t텍스트 포켓몬 게임을 클리하셨습니다.. 축하드립니다!!!!");
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				System.out.println("\t\t\t\t종료되었습니다.이용해 주셔서 감사합니다.");
+				System.exit(0);
+				break battle;
+				}
+				System.out.println("\t\t\t\tヽ(*´∀`)ノ : ....!");
+				System.out.println("\t\t\t야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				m.attackp(p);
+				if (p.hp <= 0){
+				System.out.println("\t\t\t\tヽ(*´∀`)ノ : 훗! 연약해");
+				System.out.println("\t\t\t"+p.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+				p.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;}break;
+			
+			case 2:
+				System.out.print("\t\t" + p.name + "의 스킬공격!");
+				System.out.println(p.name + ": " + " 아뵤! ( ง ᵒ̌ ∽ᵒ̌)ง⁼³₌₃ ");
+				p.sattackp(m);
+				System.out.println("\t\t\t\t" + "ヽ(*´∀`)ノ : ....");
+				if (m.hp <= 0) {
+					System.out.println(m.name + "을 처치하였습니다.");
+					System.out.println("\t\t\t\t" + "ヽ(*´∀`)ノ : .....");
+					System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+					System.out.println("\t\t\t\t텍스트 포켓몬 게임을 클리하셨습니다.. 축하드립니다!!!!");
+					System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+					System.out.println("\t\t\t\t종료되었습니다.이용해 주셔서 감사합니다.");
+					System.exit(0);
+					break battle;
+				}
+				System.out.println("\t\t\t\t" + "야생의" + m.name + "이(가)" +p.name +"을(를) 공격합니다.");
+				System.out.println("\t\t\t\t" + "ヽ(*´∀`)ノ : ....");
+				m.attackp(p);
+				if (p.hp <= 0){
+					System.out.println("\t\t\t\t" + "(◕‿↼) : 훗! 연약해");
+					System.out.println("\t\t\t\t" + p.name + "는 쓰러졌습니다." );
+					System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+					System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+					System.out.println("？(;￫д￩)ｯ! 포켓몬을 좀 더 소중히 다뤄주세요..." );
+					p.getExp(-100);
+					System.out.println("\t\t\t\t 전투를 종료합니다.");
+					break battle;
+					}break;
+			}break;
+			
+		case 2:
+			System.out.println("\t\t\t\t가랏 몬스터볼!");
+			System.out.println("\t\t\t\t 슈웅 ~~~~~~ ☺");
+			c.attack(m);
+			if (m.hp <= 0) {
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				System.out.println("\t\t\t\t" + "✌♫♪˙❤‿❤˙♫♪✌");
+				System.out.println("\t\t\t\t" + m.name + "포획에 성공 하였습니다.");
+				System.out.println("\t\t\t\t" + m.name + "은 창고로 전송되었습니다.");
+				System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+				c.getExp(150);
+				c.getItem(m.itemDrop());
+				c.getPokeMon(m.pokeDrop());
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}
+			if(m.hp >10){
+				System.out.println("\t\t\t\t" + "안타깝게도 잡히지 않았습니다.");
+				System.out.println("\t\t\t\t" + "야생 포켓몬의 체력을 최대한 떨어뜨려주세요.");
+			}
+			if (c.hp <= 0){
+				System.out.println("\t\t\t\t" + "(◕‿↼) : 훗! 연약해");
+				System.out.println("\t\t\t\t" + c.name + "는 쓰러졌습니다." );
+				System.out.println("\t\t\t\t" + "더 이상 싸울수가 없어 도주했습니다." );
+				System.out.println("\t\t\t\t" + "경험치를 모두 잃어버렸습니다." );
+				System.out.println("？(;￫д￩)ｯ! 자신의 몸을  더 소중히 다뤄주세요..." );
+				c.getExp(-100);
+				System.out.println("\t\t\t\t 전투를 종료합니다.");
+				break battle;
+			}m.attackc(c);
+			break;
+		case 3:
+			p.def++;
+			System.out.println("\t\t\t\t"+ p.name+"의 방어가 3만큼 올라갔습니다." );
+			m.attackp(p);
+			break;
+			
+		case 4:
+			System.out.println("\t\t\t\t 전투를 종료합니다.");
+			break battle;
+		}	
+	}
+}
 	void heal(){
 		System.out.println("(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ 쉬었다 가세요.");
 		System.out.println("대충 회복을 도와주는 춤");
@@ -395,7 +1202,12 @@ public class MyGame {
 		p.hp = p.maxHp;
 		c.hp = c.maxHp;		
 		System.out.println("\t\t\t\t포켓몬과 자신의 체력이 모두 회복되었습니다.");
-		
+		System.out.println("\t\t\t\t계속진행하려면  enter를 눌러주세요.");
+		blank = sc.nextLine();
+		if(blank.equals("ccc")){
+			
+		}
+		sc.close();
 	}
 
 	
