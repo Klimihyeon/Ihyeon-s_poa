@@ -87,7 +87,7 @@ public class PokeMon {
 
 	String pokeInfo(){
 		String info = "\t\t\t\t레벨 : " + level + "(" + exp + "/100)";
-		System.out.println("\t\t\t\t포켓몬 : "+ name);
+		System.out.println("포켓몬 : "+ name);
 		return info;		
 	}
 	void showInfo(){
@@ -99,14 +99,25 @@ public class PokeMon {
 		System.out.println("\t\t\t\t마나 : " + mp + "/" + maxMp);
 		System.out.println("\t\t\t\t공격 : " + att);
 		System.out.println("\t\t\t\t방어 : " + def);
-		System.out.println("\t\t\t\t도감 설명은 다음 업데이트에...");
 		System.out.println("\t\t\t\t============================");
 		System.out.println();
 		System.out.println();
 	}
 
-
+	void getItem(Item item){
+		System.out.println("\t\t\t\t"+item.name + "을 획득하였습니다.");
+		for(int i =0; i <items.length; i++){
+			if(items[i]==null){
+				items[i] = item;
+				break;
+			}
+		}
+		maxHp += item.hp;
+		maxMp += item.mp;
+		att += item.att;
+		def += item.def;
 
 		
 	
+}
 }
