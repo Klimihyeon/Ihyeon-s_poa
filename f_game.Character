@@ -37,7 +37,7 @@ public class Character {
 	void showInfo(){
 		System.out.println("\t\t\t\t============================");
 		System.out.println("\t\t\t\t------------상태-------------");
-		System.out.println("\t\t\t\t이름 : " + name);
+		System.out.println("\t\t\t\t이름 : " + name+"포켓몬 트레이너");
 		System.out.println("\t\t\t\t레벨 : " + level + "(" + exp + "/100)");
 		System.out.println("\t\t\t\t체력 : " + hp + "/" + maxHp);
 		System.out.println("\t\t\t\t마나 : " + mp + "/" + maxMp);
@@ -51,13 +51,14 @@ public class Character {
 		}
 		System.out.println("\t\t\t\t============================");
 		System.out.println("\t\t\t\t----------소유한 포켓몬----------");
+		System.out.println("\t\t\t\t--0번이 main,나머지 창고, 최대5마리--");
 		for(int i =0; i < pokes.length; i++){
 			if(pokes[i] != null){
+				System.out.print("\t\t\t\t"+i+"번");
 				System.out.println(pokes[i].pokeInfo());
 			}
 		}
 		System.out.println("\t\t\t\t============================");
-		System.out.println();
 		System.out.println();
 	}
 	
@@ -65,15 +66,17 @@ public class Character {
 		int damage = att - m.def;
 		damage = damage <= 0 ? 1: damage; //데미지가 0 이하면 최소한 1은 되도록
 		m.hp = m.hp < damage ? m.hp - m.hp : m.hp - damage; //데미지가 체력보다 높으면 -값이 나오지 않게. 체력만큼만 닳도록.
-		
-		System.out.println("☺꿈틀");
-		System.out.println("꿈틀☺");
+
 		System.out.println("\t\t\t"+name + "(이)가 " + m.name + "의" 
 				+ damage + "포획을 시도합니다!");
+		System.out.println("\t\t\t\t\t☺꿈틀");
+		System.out.println("\t\t\t\t☺꿈틀");
+		System.out.println("\t\t\t\t\t꿈틀☺");
+		System.out.println("\t\t\t\t☺꿈틀");
 		System.out.println("\t\t\t"+m.name + "의 남은 hp : " + m.hp);
 	}
 	void getExp(int exp){ //얼마만큼 경험치를 얻었느냐.
-		System.out.println("\t\t\t"+exp + "의 경험치를 획득하였습니다.");
+		System.out.println("\t\t\t"+name+"이(가)"+exp + "의 경험치를 획득하였습니다.");
 		this.exp += exp;
 		while(100 <= this.exp){ //경험치가 200만큼 오게 된다면. 레벨업 자동으로
 			levelUp();
@@ -89,7 +92,7 @@ public class Character {
 		def += 2;
 		hp = maxHp;
 		mp = maxMp;
-		System.out.println("\t\t"+"LEVEL UP!!");
+		System.out.println("\t\t\t\t"+"LEVEL UP!!");
 	}
 	
 	void getItem(Item item){
@@ -111,9 +114,6 @@ public class Character {
 		for(int i =0; i <pokes.length; i++){
 			if(pokes[i]==null){
 				pokes[i] = poke;
-			if(pokes[i].name == poke.name){
-				pokes[i] = poke;
-			}	
 				break;
 			}
 		}
