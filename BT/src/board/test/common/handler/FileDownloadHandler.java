@@ -1,0 +1,55 @@
+package board.test.common.handler;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import board.test.common.dao.AtchFileDaoImpl;
+import board.test.common.dao.IAtchFileDao;
+import board.test.common.vo.AtchFileVO;
+
+public class FileDownloadHandler implements CommandHandler {
+
+	@Override
+	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		long fileId =  req.getParameter("fileId") != null ? Long.parseLong(req.getParameter("fileId")) : -1;
+		int fileSn = req.getParameter("fileSn") != null ? Integer.parseInt(req.getParameter("fileSn")) : 1;
+
+		IAtchFileDao dao = AtchFileDaoImpl.getInstance();
+		
+		AtchFileVO fileVO = new AtchFileVO();
+		fileVO.setAtchFileId(fileId);
+		fileVO.setFileSn(fileSn);
+
+		fileVO = dao.getAtchFileDetail(fileVO);
+
+
+		res.setContentType("application/octet-stream");
+		System.out.println("URL인코딩된 파일명 => " +  URLEncoder.encode(fileVO.getOrignlFileNm(), "UTF-8"));
+		res.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileVO.getOrignlFileNm(), "UTF-8").replaceAll("\\+", "%20") + "\"");
+
+		
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(fileVO.getFileStreCours()));
+		BufferedOutputStream bos = new BufferedOutputStream(res.getOutputStream());
+
+		int c = -1;
+		while((c = bis.read()) != -1) {
+			bos.write(c);
+		}
+
+		bis.close();
+		bos.close();
+
+		return null;
+	}
+
+	@Override
+	public boolean isRedirect(HttpServletRequest req) {
+		return false;
+	}
+}
