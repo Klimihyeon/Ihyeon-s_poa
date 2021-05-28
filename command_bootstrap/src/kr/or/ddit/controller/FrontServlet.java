@@ -24,7 +24,6 @@ public class FrontServlet extends HttpServlet {
 	private void requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//사용자 URI 검출
-		System.out.println("ㅇㄴ마ㅣ린아리ㅏㄴㅁ어리 나얼 ");
 		
 		String command = request.getRequestURI(); //contextPath 포함.
 		if(command.indexOf(request.getContextPath())==0) {//contextPath 삭제
